@@ -170,4 +170,17 @@ h2{font-size:22px;margin:0 0 8px}
   display:none;
 }
 .lightbox.show .close{ display:block; }
+body.lightbox-open{
+  overflow: hidden;
+}
+document.body.classList.add("lightbox-open");
+document.body.classList.remove("lightbox-open");
+.lightbox img{
+  animation: popIn .25s ease;
+}
+
+@keyframes popIn{
+  from{ opacity:0; transform: scale(.96); }
+  to{ opacity:1; transform: scale(1); }
+}
 
