@@ -2,10 +2,16 @@
 :root{
   --bg:#0b0b0e;
   --panel:#121218;
-  --text:#f3f3f6;
-  --muted:#b9b9c6;
-  --line:#222232;
-  --accent:#ffffff;
+  --text:#f2f3f6;
+  --muted:#b6b9c6;
+  --line:#232335;
+
+  --accent-cool:#9fb7ff;
+  --accent-sun:#e3c36a;
+  --sun-soft:#f1d892;
+  --sun-deep:#b89a45;
+  --sun-glow: rgba(227,195,106,.18);
+
 }
 
 *{box-sizing:border-box}
@@ -52,8 +58,13 @@ a{color:inherit;text-decoration:none}
   background: rgba(255,255,255,.08);
   padding:10px 14px;border-radius:14px;
   display:inline-block;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .12s ease;
+
 }
-.btn:hover{background: rgba(255,255,255,.12)}
+.btn:hover{
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 0 18px var(--sun-glow);
+}
 .btn.outline{background:transparent}
 
 h2{font-size:22px;margin:0 0 8px}
@@ -72,9 +83,16 @@ h2{font-size:22px;margin:0 0 8px}
   padding:0;
   overflow:hidden;
   cursor:pointer;
-  transition: transform .12s ease, border-color .12s ease;
+  transition: transform .12s ease, border-color .12s ease, box-shadow .2s ease;
 }
-.card:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.16)}
+
+}
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 0 24px var(--sun-glow);
+}
+
 .card img{display:block;width:100%;height:280px;object-fit:cover}
 
 .about{
@@ -95,8 +113,14 @@ h2{font-size:22px;margin:0 0 8px}
   border:1px solid rgba(255,255,255,.08);
   background: rgba(255,255,255,.03);
   padding:12px 14px;border-radius:16px;
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
-.contactRow:hover{border-color: rgba(255,255,255,.16)}
+
+}
+.contactRow:hover{
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 0 18px var(--sun-glow);
+}
 
 .footer{
   max-width:1050px;margin:0 auto;
