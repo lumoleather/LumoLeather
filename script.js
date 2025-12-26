@@ -11,24 +11,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // If any of these are missing, don't crash the page
   if (!lightbox || !lightboxImg || !closeBtn) return;
 
-  // Open lightbox when clicking a card
-  document.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("click", () => {
-      const src = card.getAttribute("data-full") || card.querySelector("img")?.getAttribute("src");
-      if (!src) return;
-
-      lightboxImg.src = src;
-      lightbox.classList.add("show");
-      lightbox.setAttribute("aria-hidden", "false");
-    });
-  });
-
   // Close helpers
   const closeLightbox = () => {
     lightbox.classList.remove("show");
     lightbox.setAttribute("aria-hidden", "true");
     lightboxImg.src = ""; // stop loading / free memory
+    document.body.classList.remove("lightbox-open");
   };
+
+  // Open lightbox when clicking a card
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const src =
+        card.getAttribute("data-full") ||
+        card.querySelector("img")?.getAttribute("src");
+      if (!src) return;
+
+      lightboxImg.src = src;
+      lightbox.classList.add("show");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lightbox-open");
+    });
+  });
 
   closeBtn.addEventListener("click", closeLightbox);
 
