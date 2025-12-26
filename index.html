@@ -10,17 +10,17 @@
 </head>
 <body>
   <header class="nav">
-    <div class="brand">Lumo Leather</div>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class=" brand-heading">Lumo Leather</div>
+<nav>
+  <a href="#work" class="brand-heading">Selected Work</a>
+  <a href="#about" class="brand-heading">About</a>
+  <a href="#contact" class="brand-heading">Contact</a>
+</nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>*PAGE IN PROGRESS* Leather Tattoo Art</h1>
+      <h1 class="brand-heading"> Leather Tattoo Art</h1>
       <p class="sub">
         *WEBSITE IN PROGRESS* Bold, sun-kissed linework. Contact below for custom pieces and commissions.
       </p>
@@ -31,7 +31,7 @@
     </section>
 
     <section id="work" class="section">
-      <h2>Selected Work</h2>
+    <h2 class="brand-heading">Selected Work</h2>
       <p class="muted">Click an image to view larger.</p>
 
       <div class="gallery">
@@ -52,7 +52,7 @@
     </section>
 
     <section id="about" class="section">
-      <h2>About</h2>
+ <h2 class="brand-heading">About</h2>
       <div class="about">
         <img class="avatar" src="images/profile.jpg" alt="Artist portrait" />
         <div>
@@ -74,7 +74,7 @@ I take on custom work and love collaborating with people who value the process a
     </section>
 
     <section id="contact" class="section">
-      <h2>Contact</h2>
+   <h2 class="brand-heading">Contact</h2>
       <p class="muted">Best way to reach me:</p>
 
       <div class="contact">
@@ -100,7 +100,8 @@ I take on custom work and love collaborating with people who value the process a
   </footer>
 
   <script src="script.js"></script>
-  <script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
   const revealEls = document.querySelectorAll('.section, .hero, .footer');
 
   revealEls.forEach(el => el.classList.add('reveal'));
@@ -112,10 +113,12 @@ I take on custom work and love collaborating with people who value the process a
   }, { threshold: 0.12 });
 
   revealEls.forEach(el => io.observe(el));
+});
 </script>
 
 </body>
 </html>
+
 
 
 
