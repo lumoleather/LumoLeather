@@ -141,8 +141,7 @@ h2{font-size:22px;margin:0 0 8px}
 @media (prefers-reduced-motion: reduce){
   .reveal{ opacity: 1; transform: none; transition: none; }
 }
-.close{ display:none; }
-.lightbox.show .close{ display:block; }
+
 .lightbox{
   position:fixed; inset:0;
   background: rgba(0,0,0,.85);
