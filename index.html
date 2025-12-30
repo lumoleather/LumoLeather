@@ -59,7 +59,7 @@
           <p>
            I’m an artist working with leather as both canvas and medium. My background in drawing and tattoo-style linework shapes everything I make.
 
-I’m inspired by ritual, craftsmanship, and the idea that objects should grow more meaningful the longer they’re used. I care deeply about making things that feel honest, tactile, and personal.
+I’m inspired by the idea that objects should grow more meaningful the longer they’re used. I care deeply about making things that feel honest, tactile, and personal.
 
 I take on custom work and love collaborating with people who value the process as much as the final piece.
  
@@ -115,9 +115,56 @@ document.addEventListener("DOMContentLoaded", () => {
   revealEls.forEach(el => io.observe(el));
 });
 </script>
+<form id="contactForm">
+  <input name="name" placeholder="Your name" required />
+  <input name="email" type="email" placeholder="Your email" required />
+  <textarea name="message" placeholder="What can I help with?" rows="6" required></textarea>
+
+  <!-- Honeypot field (hidden from humans) -->
+  <input name="website" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px;" />
+
+  <button type="submit">Send</button>
+  <p id="formStatus" role="status" style="margin-top:10px;"></p>
+</form>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("formStatus");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusEl.textContent = "Sending…";
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const resp = await fetch("/.netlify/functions/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await resp.json().catch(() => ({}));
+
+      if (!resp.ok) {
+        statusEl.textContent = "Something went wrong. Try again or email me directly.";
+        console.error("Form error:", data);
+        return;
+      }
+
+      statusEl.textContent = "Sent! I’ll get back to you soon.";
+      form.reset();
+    } catch (err) {
+      statusEl.textContent = "Network error. Try again in a moment.";
+      console.error(err);
+    }
+  });
+</script>
 
 </body>
 </html>
+
 
 
 
