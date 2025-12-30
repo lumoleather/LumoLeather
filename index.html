@@ -82,7 +82,30 @@ I take on custom work and love collaborating with people who value the process a
         <a class="contactRow" href="https://instagram.com/LumoLeather" target="_blank" rel="noreferrer">Instagram: @LumoLeather</a>
      
       </div>
+ <p class="muted" style="margin-top:16px;">Or send a message here:</p>
 
+  <form class="contactForm" action="https://formspree.io/f/xdaojlpv" method="POST">
+    <label class="contactLabel">
+      Name
+      <input type="text" name="name" required />
+    </label>
+
+    <label class="contactLabel">
+      Email
+      <input type="email" name="email" required />
+    </label>
+
+    <label class="contactLabel">
+      Message
+      <textarea name="message" rows="6" required></textarea>
+    </label>
+
+    <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
+    <input type="hidden" name="_next" value="https://lumoleather.github.io/#contact" />
+
+    <button class="btn" type="submit">Send</button>
+  </form>
+</section>
       <p class="small muted">
       
       </p>
@@ -114,46 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   revealEls.forEach(el => io.observe(el));
 });
-<form action="https://formspree.io/f/xdaojlpv" method="POST">
-  <input name="name" placeholder="Your name" required />
-  <input name="email" type="email" placeholder="Your email" required />
-  <textarea name="message" rows="6" placeholder="Message" required></textarea>
-
-  <!-- optional: subject line in your inbox -->
-  <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
-
-  <button type="submit">Send</button>
-</form>
-
-<input type="hidden" name="_next" value="https://your-site-url/#thanks" />
-<section id="contact" class="section">
-  <h2>Contact</h2>
-  <p>Send me a message and I’ll get back to you.</p>
-
-  <form action="https://formspree.io/f/xdaojlpv" method="POST">
-    <label>
-      Name
-      <input type="text" name="name" required />
-    </label>
-
-    <label>
-      Email
-      <input type="email" name="email" required />
-    </label>
-
-    <label>
-      Message
-      <textarea name="message" rows="6" required></textarea>
-    </label>
-
-    <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
-
-    <button type="submit">Send</button>
-  </form>
-</section>
+  
 
 </body>
 </html>
+
 
 
 
