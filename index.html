@@ -101,9 +101,29 @@ I take on custom work and love collaborating with people who value the process a
       Message
       <textarea name="message" rows="6" required></textarea>
     </label>
+<form id="contactForm" class="contactForm" action="https://formspree.io/f/xdaojlpv" method="POST">
+  <label class="contactLabel">
+    Name
+    <input type="text" name="name" required />
+  </label>
 
-    <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
-    <input type="hidden" name="_next" value="https://lumoleather.github.io/LumoLeather/#contact" />
+  <label class="contactLabel">
+    Email
+    <input type="email" name="email" required />
+  </label>
+
+  <label class="contactLabel">
+    Message
+    <textarea name="message" rows="6" required></textarea>
+  </label>
+
+  <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
+
+  <button class="btn" type="submit">Send</button>
+  <p id="formStatus" class="small muted" role="status" style="margin:10px 0 0;"></p>
+</form>
+
+  
 
     <button class="btn" type="submit">Send</button>
   </form>
@@ -127,12 +147,44 @@ document.addEventListener("DOMContentLoaded", () => {
   revealEls.forEach(el => io.observe(el));
 });
 </script>
+<script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("formStatus");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusEl.textContent = "Sending…";
+
+    try {
+      const resp = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      });
+
+      if (resp.ok) {
+        statusEl.textContent = "Sent! I’ll get back to you soon.";
+        form.reset();
+      } else {
+        statusEl.textContent = "Something went wrong. Please email me directly.";
+      }
+    } catch (err) {
+      statusEl.textContent = "Network error. Try again in a moment.";
+    }
+  });
+});
+</script>
 
 </body>
 </html>
 
 </body>
 </html>
+
 
 
 
