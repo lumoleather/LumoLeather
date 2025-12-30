@@ -126,9 +126,35 @@ document.addEventListener("DOMContentLoaded", () => {
 </form>
 
 <input type="hidden" name="_next" value="https://your-site-url/#thanks" />
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <p>Send me a message and I’ll get back to you.</p>
+
+  <form action="https://formspree.io/f/xdaojlpv" method="POST">
+    <label>
+      Name
+      <input type="text" name="name" required />
+    </label>
+
+    <label>
+      Email
+      <input type="email" name="email" required />
+    </label>
+
+    <label>
+      Message
+      <textarea name="message" rows="6" required></textarea>
+    </label>
+
+    <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
+
+    <button type="submit">Send</button>
+  </form>
+</section>
 
 </body>
 </html>
+
 
 
 
