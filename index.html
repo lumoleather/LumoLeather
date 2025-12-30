@@ -147,11 +147,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await resp.json().catch(() => ({}));
 
-      if (!resp.ok) {
-        statusEl.textContent = "Something went wrong. Try again or email me directly.";
-        console.error("Form error:", data);
-        return;
-      }
+    if (!resp.ok) {
+  statusEl.textContent = `Error: ${data.error || "Request failed"}`;
+  console.error("Form error:", data);
+  return;
+}
+
 
       statusEl.textContent = "Sent! I’ll get back to you soon.";
       form.reset();
@@ -164,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
