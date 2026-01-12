@@ -86,7 +86,7 @@ I take on custom work and love collaborating with people who value the process a
 
   <p class="muted" style="margin-top:16px;">Or send a message here:</p>
 
-  <form class="contactForm" action="https://formspree.io/f/xdaojlpv" method="POST">
+  <form id="contactForm" class="contactForm" action="https://formspree.io/f/xdaojlpv" method="POST">
     <label class="contactLabel">
       Name
       <input type="text" name="name" required />
@@ -102,16 +102,10 @@ I take on custom work and love collaborating with people who value the process a
       <textarea name="message" rows="6" required></textarea>
     </label>
 
-
-  <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
-
-  <button class="btn" type="submit">Send</button>
-  <p id="formStatus" class="small muted" role="status" style="margin:10px 0 0;"></p>
-</form>
-
-  
+    <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
 
     <button class="btn" type="submit">Send</button>
+    <p id="formStatus" class="small muted" role="status" style="margin:10px 0 0;"></p>
   </form>
 
   <p class="small muted" style="margin-top:10px;">
@@ -169,14 +163,19 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 
 <script>
+ <script>
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
 
-  document.querySelectorAll('img').forEach(img => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt || '';
+  // Only target your gallery cards (not every image on the page)
+  document.querySelectorAll('.gallery .card').forEach(card => {
+    card.style.cursor = 'zoom-in';
+    card.addEventListener('click', () => {
+      const full = card.getAttribute('data-full');
+      const img = card.querySelector('img');
+
+      lightboxImg.src = full || (img ? img.src : '');
+      lightboxImg.alt = img ? (img.alt || '') : '';
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
     });
@@ -188,8 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxImg.src = '';
   });
 </script>
-</body>
-</html>
 
 </body>
 </html>
