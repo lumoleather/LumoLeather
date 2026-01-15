@@ -1,26 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title> Lumo Leather </title>
+  <title>Lumo Leather</title>
   <meta name="description" content="Artwork portfolio and contact." />
- <link rel="stylesheet" href="./style.css" />
 
+  <!-- Stitch-inspired fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
   <header class="nav">
-    <div class=" brand-heading">Lumo Leather</div>
-<nav>
-  <a href="#work" class="brand-heading">Selected Work</a>
-  <a href="#about" class="brand-heading">About</a>
-  <a href="#contact" class="brand-heading">Contact</a>
-</nav>
+    <div class="brand-heading">Lumo Leather</div>
+    <nav>
+      <a href="#work" class="brand-heading">Selected Work</a>
+      <a href="#about" class="brand-heading">About</a>
+      <a href="#contact" class="brand-heading">Contact</a>
+    </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1 class="brand-heading"> Leather Tattoo Art</h1>
+      <h1>Leather Tattoo Art</h1>
       <p class="sub">
         Bold, sun-kissed linework. Contact below for custom pieces and commissions.
       </p>
@@ -31,11 +37,10 @@
     </section>
 
     <section id="work" class="section">
-    <h2 class="brand-heading">Selected Work</h2>
+      <h2>Selected Work</h2>
       <p class="muted">Click an image to view larger.</p>
 
       <div class="gallery">
-        <!-- Replace these with your own images in /images -->
         <button class="card" data-full="images/art1.jpg" aria-label="Open artwork 1">
           <img src="images/art1.jpg" alt="Artwork 1" />
         </button>
@@ -52,160 +57,163 @@
     </section>
 
     <section id="about" class="section">
- <h2 class="brand-heading">About</h2>
+      <h2>About</h2>
       <div class="about">
         <img class="avatar" src="images/profile.jpg" alt="Artist portrait" />
         <div>
           <p>
-           I’m an artist working with leather as both canvas and medium. My background in drawing and tattoo-style linework shapes everything I make.
-
-I’m inspired by the idea that objects should grow more meaningful the longer they’re used. I care deeply about making things that feel honest, tactile, and personal.
-
-I take on custom work and love collaborating with people who value the process as much as the final piece.
- 
+            I’m an artist working with leather as both canvas and medium. My background in drawing and tattoo-style linework shapes everything I make.
+            <br><br>
+            I’m inspired by the idea that objects should grow more meaningful the longer they’re used. I care deeply about making things that feel honest, tactile, and personal.
+            <br><br>
+            I take on custom work and love collaborating with people who value the process as much as the final piece.
           </p>
           <ul class="bullets">
-            <li>Hand bags & Wallets </li>
-            <li>Jackets & Shoes</li>
-            <li>Desk mats & chairs</li>
+            <li>Hand bags &amp; Wallets</li>
+            <li>Jackets &amp; Shoes</li>
+            <li>Desk mats &amp; chairs</li>
           </ul>
         </div>
       </div>
     </section>
 
-<section id="contact" class="section">
-  <h2 class="brand-heading">Contact</h2>
-  <p class="muted">Best way to reach me:</p>
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p class="muted">Best way to reach me:</p>
 
-  <div class="contact">
-    <a class="contactRow" href="mailto:Lumoleather@gmail.com">Lumoleather@gmail.com</a>
-    <a class="contactRow" href="https://instagram.com/LumoLeather" target="_blank" rel="noreferrer">
-      Instagram: @LumoLeather
-    </a>
+      <div class="contact">
+        <a class="contactRow" href="mailto:Lumoleather@gmail.com">Lumoleather@gmail.com</a>
+        <a class="contactRow" href="https://instagram.com/LumoLeather" target="_blank" rel="noreferrer">
+          Instagram: @LumoLeather
+        </a>
+      </div>
+
+      <p class="muted" style="margin-top:16px;">Or send a message here:</p>
+
+      <form id="contactForm" class="contactForm" action="https://formspree.io/f/xdaojlpv" method="POST">
+        <label class="contactLabel">
+          Name
+          <input type="text" name="name" required />
+        </label>
+
+        <label class="contactLabel">
+          Email
+          <input type="email" name="email" required />
+        </label>
+
+        <label class="contactLabel">
+          Message
+          <textarea name="message" rows="6" required></textarea>
+        </label>
+
+        <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
+
+        <button class="btn" type="submit">Send</button>
+        <p id="formStatus" class="small muted" role="status" style="margin:10px 0 0;"></p>
+      </form>
+
+      <p class="small muted" style="margin-top:10px;">
+        If the form ever acts up, email me directly.
+      </p>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+    <button class="close" type="button" aria-label="Close preview">×</button>
+    <img id="lightboxImg" alt="">
   </div>
 
-  <p class="muted" style="margin-top:16px;">Or send a message here:</p>
+  <!-- Scroll reveal -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealEls = document.querySelectorAll('.section, .hero');
+      revealEls.forEach(el => el.classList.add('reveal'));
 
-  <form id="contactForm" class="contactForm" action="https://formspree.io/f/xdaojlpv" method="POST">
-    <label class="contactLabel">
-      Name
-      <input type="text" name="name" required />
-    </label>
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+      }, { threshold: 0.12 });
 
-    <label class="contactLabel">
-      Email
-      <input type="email" name="email" required />
-    </label>
-
-    <label class="contactLabel">
-      Message
-      <textarea name="message" rows="6" required></textarea>
-    </label>
-
-    <input type="hidden" name="_subject" value="New Lumo Leather inquiry" />
-
-    <button class="btn" type="submit">Send</button>
-    <p id="formStatus" class="small muted" role="status" style="margin:10px 0 0;"></p>
-  </form>
-
-  <p class="small muted" style="margin-top:10px;">
-    If the form ever acts up, email me directly.
-  </p>
-</section>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const revealEls = document.querySelectorAll('.section, .hero, .footer');
-
-  revealEls.forEach(el => el.classList.add('reveal'));
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('show');
+      revealEls.forEach(el => io.observe(el));
     });
-  }, { threshold: 0.12 });
+  </script>
 
-  revealEls.forEach(el => io.observe(el));
-});
-</script>
-<script src="script.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
-  const statusEl = document.getElementById("formStatus");
+  <!-- Formspree AJAX -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contactForm");
+      const statusEl = document.getElementById("formStatus");
+      if (!form) return;
 
-  if (!form) return;
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        statusEl.textContent = "Sending…";
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    statusEl.textContent = "Sending…";
+        try {
+          const resp = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { "Accept": "application/json" }
+          });
 
-    try {
-      const resp = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { "Accept": "application/json" }
+          if (resp.ok) {
+            statusEl.textContent = "Sent! I’ll get back to you soon.";
+            form.reset();
+          } else {
+            statusEl.textContent = "Something went wrong. Please email me directly.";
+          }
+        } catch (err) {
+          statusEl.textContent = "Network error. Try again in a moment.";
+        }
+      });
+    });
+  </script>
+
+  <!-- Lightbox behavior -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const closeBtn = lightbox.querySelector('.close');
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        lightbox.classList.add('show');
+        document.body.classList.add('lightbox-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('show');
+        document.body.classList.remove('lightbox-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+      }
+
+      document.querySelectorAll('.gallery .card').forEach(card => {
+        card.style.cursor = 'zoom-in';
+        card.addEventListener('click', () => {
+          const full = card.getAttribute('data-full');
+          const img = card.querySelector('img');
+          openLightbox(full || (img ? img.src : ''), img ? img.alt : '');
+        });
       });
 
-      if (resp.ok) {
-        statusEl.textContent = "Sent! I’ll get back to you soon.";
-        form.reset();
-      } else {
-        statusEl.textContent = "Something went wrong. Please email me directly.";
-      }
-    } catch (err) {
-      statusEl.textContent = "Network error. Try again in a moment.";
-    }
-  });
-});
-</script>
-<div id="lightbox" class="lightbox" aria-hidden="true">
-  <img id="lightboxImg" alt="">
-</div>
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
 
-<script>
- <script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
+      closeBtn.addEventListener('click', closeLightbox);
 
-  // Only target your gallery cards (not every image on the page)
-  document.querySelectorAll('.gallery .card').forEach(card => {
-    card.style.cursor = 'zoom-in';
-    card.addEventListener('click', () => {
-      const full = card.getAttribute('data-full');
-      const img = card.querySelector('img');
-
-      lightboxImg.src = full || (img ? img.src : '');
-      lightboxImg.alt = img ? (img.alt || '') : '';
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('show')) closeLightbox();
+      });
     });
-  });
-
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    lightboxImg.src = '';
-  });
-</script>
-
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
