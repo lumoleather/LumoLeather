@@ -132,9 +132,40 @@ a{color:inherit;text-decoration:none}
 
 /* GALLERY */
 .gallery{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap:22px;
+  column-count: 3;
+  column-gap: 22px;
+}
+
+@media (max-width: 900px){
+  .gallery{ column-count: 2; }
+}
+
+@media (max-width: 640px){
+  .gallery{ column-count: 1; }
+}
+
+.card{
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 22px;
+  break-inside: avoid;
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .25s ease;
+}
+
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.4);
+}
+
+.card img{
+  width:100%;
+  height:auto;      /* KEY: natural image height */
+  display:block;
+
 }
 
 .card{
